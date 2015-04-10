@@ -6,3 +6,25 @@ smoothly in masterful mode.
 
 Please see https://github.com/jethrocarr/pupistry for more details.
 
+
+# What it does
+
+Whilst Pupistry does most of the heavy lifting we need, this module helps
+out by adding functionality lost when in masterlesss mode (like pluginsync)
+and sets up Pupistry daemon for background application of new Puppet config.
+
+It isn't mandatory, you can use Pupistry without it if you take steps to add
+the bits you need/want to your own manifests.
+
+
+# License
+
+Pupistry is licensed under the Apache License, Version 2.0 (the "License").
+See the LICENSE.txt or http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
