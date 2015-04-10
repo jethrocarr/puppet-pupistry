@@ -2,7 +2,7 @@
   "name": "jethrocarr-pupistry",
   "version": "0.0.1",
   "author": "jethrocarr",
-  "summary": "Companion Puppet module for the Pupistry tool,
+  "summary": "Companion Puppet module for the Pupistry tool",
   "license": "Apache 2.0",
   "source": "https://github.com/jethrocarr/puppet-pupistry",
   "project_page": "https://github.com/jethrocarr/puppet-pupistry",
