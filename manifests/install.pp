@@ -44,7 +44,7 @@ class pupistry::install {
       }
       'upstart': {
         file { 'pupistry_init':
-          path   => '/etc/init/pupistry',
+          path   => '/etc/init/pupistry.conf',
           source => "puppet:///modules/pupistry/upstart.conf",
           notify => Service['pupistry'],
           mode   => '0644',
