@@ -47,6 +47,7 @@ class pupistry::install {
           path   => '/etc/init.d/pupistry',
           source => "puppet:///modules/pupistry/initscript-linux.sh",
           notify => Service['pupistry'],
+          mode   => '0755',
         }
       }
       'bsdinit' : {
@@ -54,6 +55,7 @@ class pupistry::install {
           path   => '/usr/local/etc/rc.d/pupistry',
           source => "puppet:///modules/pupistry/initscript-freebsd.sh",
           notify => Service['pupistry'],
+          mode   => '0755',
         }
 
         notify { 'Warning: FreeBSD pupistry bootscript only place holder, yet to be implemented': }
