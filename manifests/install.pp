@@ -35,8 +35,8 @@ class pupistry::install {
   # OS/init discovery is done in params.pp, here we just install the appropiate
   # files for each platform.
 
-  if ($install_daemon) {
-    notify { "Would have installed daemon, for init type ${init_system}": }
+  if ($pupistry::install_daemon) {
+    notify { "Would have installed daemon, for init type ${pupistry::init_system}": }
   }
 
 }
