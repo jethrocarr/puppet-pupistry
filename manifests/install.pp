@@ -41,23 +41,23 @@ class pupistry::install {
     case $pupistry::init_system {
       'systemd': {
         notify { 'Warning: systemd pupistry bootscript only place holder, yet to be implemented': }
-      },
+      }
       'sysvinit': {
         file { 'pupistry_init':
-          path   => '/etc/init.d/pupistry'
+          path   => '/etc/init.d/pupistry',
           source => "puppet:///modules/${name}/initscript-linux.sh",
           notify => Service['pupistry'],
         }
-      },
+      }
       'bsdinit' : {
         file { 'pupistry_init':
-          path   => '/usr/local/etc/rc.d/pupistry'
+          path   => '/usr/local/etc/rc.d/pupistry',
           source => "puppet:///modules/${name}/initscript-freebsd.sh",
           notify => Service['pupistry'],
         }
 
         notify { 'Warning: FreeBSD pupistry bootscript only place holder, yet to be implemented': }
-      },
+      }
       default : {
         fail("Unknown init system ${pupistry::initsystem}, unable to install Pupistry daemon")
       }
