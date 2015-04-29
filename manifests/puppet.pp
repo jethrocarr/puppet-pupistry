@@ -7,7 +7,7 @@ class pupistry::puppet {
   # when running masterless.
   # TODO: Do we need logic to determine if masterless or not?
 
-  if ($puppet_pluginsync == true) {
+  if ($pupistry::puppet_pluginsync == true) {
     file { $::settings::libdir:
       ensure  => directory,
       source  => 'puppet:///plugins',

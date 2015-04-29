@@ -6,8 +6,8 @@ class pupistry::install {
   # if appropiate via Rubygems. If you have a system OS package for Pupistry,
   # you may want to have this turned off to avoid issues.
 
-  if ($install_pupistry) {
-    if ($install_daemon) {
+  if ($pupistry::install_pupistry) {
+    if ($pupistry::install_daemon) {
       # Daemon is installed, we want to reload the Pupistry service.
       package { 'pupistry':
         ensure   => latest,
