@@ -34,8 +34,10 @@ class pupistry::params {
 
     'Debian' => $::operatingsystem ? {
       'Ubuntu' => $::operatingsystemmajrelease ? {
-        '12.04' => 'sysvinit',  # We don't provide upstart scripts, use sysvinit mode
-        '14.04' => 'sysvinit',  # We don't provide upstart scripts, use sysvinit mode
+        '12.04' => 'upstart',
+        '14.04' => 'upstart',
+        '14.10' => 'upstart',
+        '15.04' => 'systemd',
         default => 'systemd',   # All future Ubuntu versions will be systemd
       },
 

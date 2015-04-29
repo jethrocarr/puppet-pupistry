@@ -42,6 +42,14 @@ class pupistry::install {
       'systemd': {
         notify { 'Warning: systemd pupistry bootscript only place holder, yet to be implemented': }
       }
+      'upstart': {
+        file { 'pupistry_init':
+          path   => '/etc/init/pupistry',
+          source => "puppet:///modules/pupistry/upstart.conf",
+          notify => Service['pupistry'],
+          mode   => '0644',
+        }
+      }
       'sysvinit': {
         file { 'pupistry_init':
           path   => '/etc/init.d/pupistry',
