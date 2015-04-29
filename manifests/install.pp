@@ -85,8 +85,9 @@ class pupistry::install {
     # Ensure daemon is stopped and idle. Need to test to see if this errors if
     # service file is not installed?
     service { 'pupistry':
-      ensure => stopped,
-      enable => false,
+      ensure     => stopped,
+      enable     => false,
+      hasrestart => true,
     }
   }
 
