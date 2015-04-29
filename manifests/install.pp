@@ -36,7 +36,48 @@ class pupistry::install {
   # files for each platform.
 
   if ($pupistry::install_daemon) {
-    notify { "Would have installed daemon, for init type ${pupistry::init_system}": }
+
+    # Install the service initscript/unit file.
+    case $pupistry::init_system {
+      'systemd': {
+        notify { 'Warning: systemd pupistry bootscript only place holder, yet to be implemented': }
+      },
+      'sysvinit': {
+        file { 'pupistry_init':
+          path   => '/etc/init.d/pupistry'
+          source => "puppet:///modules/${name}/initscript-linux.sh",
+          notify => Service['pupistry'],
+        }
+      },
+      'bsdinit' : {
+        file { 'pupistry_init':
+          path   => '/usr/local/etc/rc.d/pupistry'
+          source => "puppet:///modules/${name}/initscript-freebsd.sh",
+          notify => Service['pupistry'],
+        }
+
+        notify { 'Warning: FreeBSD pupistry bootscript only place holder, yet to be implemented': }
+      },
+      default : {
+        fail("Unknown init system ${pupistry::initsystem}, unable to install Pupistry daemon")
+      }
+    }
+
+    # Define the pupistry service
+    service { 'pupistry':
+      ensure  => running,
+      enable  => true,
+      require => File['pupistry_init'],
+    }
+  }
+  else
+  {
+    # Ensure daemon is stopped and idle. Need to test to see if this errors if
+    # service file is not installed?
+    service { 'pupistry':
+      ensure => stopped,
+      enable => false,
+    }
   }
 
 }
