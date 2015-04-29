@@ -17,6 +17,16 @@ It isn't mandatory, you can use Pupistry without it if you take steps to add
 the bits you need/want to your own manifests.
 
 
+# Configuration
+
+This module sets Pupistry up with various sensible defaults including
+installation of the daemon and ensuring latest version installed via Rubygems.
+
+If you wish to change any behaviors, just review the configuration in
+`manifests/params.pp` and create an override entry in Hiera - no need to have
+to fork the module.
+
+
 # License
 
 Pupistry is licensed under the Apache License, Version 2.0 (the "License").
