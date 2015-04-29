@@ -45,14 +45,14 @@ class pupistry::install {
       'sysvinit': {
         file { 'pupistry_init':
           path   => '/etc/init.d/pupistry',
-          source => "puppet:///modules/${name}/initscript-linux.sh",
+          source => "puppet:///modules/pupistry/initscript-linux.sh",
           notify => Service['pupistry'],
         }
       }
       'bsdinit' : {
         file { 'pupistry_init':
           path   => '/usr/local/etc/rc.d/pupistry',
-          source => "puppet:///modules/${name}/initscript-freebsd.sh",
+          source => "puppet:///modules/pupistry/initscript-freebsd.sh",
           notify => Service['pupistry'],
         }
 
