@@ -1,6 +1,7 @@
 # The following parameters provide configuration for Pupistry. Generally the
 # defaults should be good for most users, however if you wish to change any
-# of the values, you can do so by simply defining override values in Hiera.
+# of the values, you can do so by simply changing the parms when invoking
+# Pupistry or in Hiera. See the README for details.
 
 class pupistry::params {
 

@@ -26,6 +26,14 @@ If you wish to change any behaviors, just review the configuration in
 `manifests/params.pp` and create an override entry in Hiera - no need to have
 to fork the module.
 
+Example of override in Hiera to disable daemon:
+
+    pupistry::install_daemon: false
+
+Overrides that should impact all systems can go into common.yaml, otherwise
+just selectively put the override into the most appropiate YAML file for your
+layout.
+
 
 # License
 
