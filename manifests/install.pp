@@ -46,12 +46,14 @@ class pupistry::install {
           command     => 'systemctl daemon-reload',
           path        => ["/bin", "/sbin", "/usr/bin", "/usr/sbin"],
           refreshonly => true,
+          subscribe   => File['pupistry_init'],
+          before      => Service['pupistry'],
         }
 
         file { 'pupistry_init':
           path   => '/etc/systemd/system/pupistry.service',
           source => "puppet:///modules/pupistry/systemd-pupistry.service",
-          notify => [ Service['pupistry'], Exec['pupistry_reload_systemd'] ],
+          notify => Service['pupistry'],
           mode   => '0644',
         }
 
