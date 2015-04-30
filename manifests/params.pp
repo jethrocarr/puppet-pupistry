@@ -45,6 +45,11 @@ class pupistry::params {
         '15.04' => 'systemd',
         default => 'systemd',   # All future Ubuntu versions will be systemd
       },
+      'Debian' => $::operatingsystemmajrelease ? {
+        '7'     => 'sysvinit',
+        '8'     => 'systemd',
+        default => 'systemd',   # All future Debian versions will be systemd
+      },
 
       # See comments below re defaults.
       default => 'sysvinit',
