@@ -17,7 +17,11 @@ class pupistry::params {
   $install_daemon     = true
 
 
-  # Determine what init system is running on this system
+  # Determine what init system is running on this system.
+  #
+  # TODO: Might be worth writing a proper fact for this and getting it pushed
+  #       upstream into Puppet?
+
   $init_system = $::osfamily ? {
 
     'RedHat' => $::operatingsystemmajrelease ? {
@@ -28,6 +32,7 @@ class pupistry::params {
     },
     
     'FreeBSD' => $::operatingsystemmajrelease ? {
+      '9'     => 'bsdinit',
       '10'    => 'bsdinit',
       default => 'bsdinit',
     },
