@@ -40,7 +40,20 @@ class pupistry::install {
     # Install the service initscript/unit file.
     case $pupistry::init_system {
       'systemd': {
-        notify { 'Warning: systemd pupistry bootscript only place holder, yet to be implemented': }
+
+        exec { 'pupistry_reload_systemd':
+          # SystemD needs a reload after any unit file change
+          command     => 'systemctl daemon-reload',
+          refreshonly => true,
+        }
+
+        file { 'pupistry_init':
+          path   => '/etc/systemd/system/pupistry.service',
+          source => "puppet:///modules/pupistry/systemd-pupistry.service",
+          notify => [ Service['pupistry'], Exec['pupistry_reload_systemd'] ],
+          mode   => '0644',
+        }
+
       }
       'upstart': {
         file { 'pupistry_init':

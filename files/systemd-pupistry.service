@@ -1,0 +1,17 @@
+# systemd unit file for Pupistry daemon.
+#
+# All logs for Pupistry when running can be viewed with journal -f -u pupistry
+#
+
+[Unit]
+Description=Daemon for applying masterless Puppet configurations
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/pupistry apply --daemon
+RestartSec=5
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
