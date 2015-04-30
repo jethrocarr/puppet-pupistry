@@ -79,11 +79,19 @@ class pupistry::install {
       enable  => true,
       require => File['pupistry_init'],
     }
+
+    # Ensure that the master-full Puppet daemon is stopped, some distributions
+    # will automatically configure it otherwise, and we don't know what could
+    # happen.
+    service { 'puppet':
+      ensure => stopped,
+      enable => false,
+    }
+
   }
   else
   {
-    # Ensure daemon is stopped and idle. Need to test to see if this errors if
-    # service file is not installed?
+    # Ensure daemon is stopped and idle.
     service { 'pupistry':
       ensure     => stopped,
       enable     => false,
