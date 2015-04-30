@@ -44,6 +44,7 @@ class pupistry::install {
         exec { 'pupistry_reload_systemd':
           # SystemD needs a reload after any unit file change
           command     => 'systemctl daemon-reload',
+          path        => ["/bin", "/sbin", "/usr/bin", "/usr/sbin"],
           refreshonly => true,
         }
 
