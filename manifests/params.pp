@@ -24,11 +24,19 @@ class pupistry::params {
 
   $init_system = $::osfamily ? {
 
-    'RedHat' => $::operatingsystemmajrelease ? {
-      '5'     => 'sysvinit',
-      '6'     => 'sysvinit',
-      '7'     => 'systemd',
-      default => 'systemd',
+    'RedHat' => $::operatingsystem ? {
+      'Amazon' => $::operatingsystemmajrelease ? {
+        '2014'  => 'sysvinit',
+        '2015'  => 'sysvinit',
+        default => 'sysvinit',
+      },
+      default => $::operatingsystemmajrelease ? {
+        # Covers CentOS & RHEL
+        '5'     => 'sysvinit',
+        '6'     => 'sysvinit',
+        '7'     => 'systemd',
+        default => 'systemd',
+      },
     },
     
     'FreeBSD' => $::operatingsystemmajrelease ? {
