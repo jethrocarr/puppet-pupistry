@@ -39,6 +39,7 @@ name=`basename $0`
 pid_file="/var/run/$name.pid"
 
 get_pid() {
+    touch "$pid_file"
     cat "$pid_file"
 }
 
@@ -54,6 +55,7 @@ case "$1" in
         echo "Starting $name"
         cd "$dir"
 	( $cmd_app & echo $! > "$pid_file") 2>&1 | logger -t pupistry &
+	sleep 1 # avoid trying to get the PID before it exists yet
         echo "Running as PID `get_pid`"
 
 	if ! is_running; then
