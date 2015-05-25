@@ -58,10 +58,11 @@ class pupistry::params {
         '8'     => 'systemd',
         default => 'systemd',   # All future Debian versions will be systemd
       },
-
       # See comments below re defaults.
       default => 'sysvinit',
     },
+
+    'Darwin' => 'unsupported',
 
     # Default for any unknown system is sysvinit since most distros inc systemd
     # using still support sysvinit scripts. In future, this default will change

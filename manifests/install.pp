@@ -84,6 +84,9 @@ class pupistry::install {
 
         notify { 'Warning: FreeBSD pupistry bootscript only place holder, yet to be implemented': }
       }
+      'unsupported' : {
+        notify { 'Warning: Pupistry daemon is not supported on this platform, you must run pupistry apply manually': }
+      }
       default : {
         fail("Unknown init system ${pupistry::initsystem}, unable to install Pupistry daemon")
       }
