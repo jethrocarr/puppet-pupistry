@@ -92,19 +92,21 @@ class pupistry::install {
       }
     }
 
-    # Define the pupistry service
-    service { 'pupistry':
-      ensure  => running,
-      enable  => true,
-      require => File['pupistry_init'],
-    }
+    if $pupistry::init_system != 'unsupported' {
+      # Define the pupistry service
+      service { 'pupistry':
+        ensure  => running,
+        enable  => true,
+        require => File['pupistry_init'],
+      }
 
-    # Ensure that the master-full Puppet daemon is stopped, some distributions
-    # will automatically configure it otherwise, and we don't know what could
-    # happen.
-    service { 'puppet':
-      ensure => stopped,
-      enable => false,
+      # Ensure that the master-full Puppet daemon is stopped, some distributions
+      # will automatically configure it otherwise, and we don't know what could
+      # happen.
+      service { 'puppet':
+        ensure => stopped,
+        enable => false,
+      }
     }
 
   }
