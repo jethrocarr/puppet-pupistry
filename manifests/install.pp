@@ -7,7 +7,7 @@ class pupistry::install {
   # you may want to have this turned off to avoid issues.
 
   if ($pupistry::install_pupistry) {
-    if ($pupistry::install_daemon) {
+    if ($pupistry::install_daemon and $pupistry::init_system != 'unsupported') {
       # Daemon is installed, we want to reload the Pupistry service.
       package { 'pupistry':
         ensure   => latest,
@@ -35,7 +35,7 @@ class pupistry::install {
   # OS/init discovery is done in params.pp, here we just install the appropiate
   # files for each platform.
 
-  if ($pupistry::install_daemon) {
+  if ($pupistry::install_daemon and $pupistry::init_system != 'unsupported') {
 
     # Install the service initscript/unit file.
     case $pupistry::init_system {
@@ -92,21 +92,19 @@ class pupistry::install {
       }
     }
 
-    if $pupistry::init_system != 'unsupported' {
-      # Define the pupistry service
-      service { 'pupistry':
-        ensure  => running,
-        enable  => true,
-        require => File['pupistry_init'],
-      }
+    # Define the pupistry service
+    service { 'pupistry':
+      ensure  => running,
+      enable  => true,
+      require => File['pupistry_init'],
+    }
 
-      # Ensure that the master-full Puppet daemon is stopped, some distributions
-      # will automatically configure it otherwise, and we don't know what could
-      # happen.
-      service { 'puppet':
-        ensure => stopped,
-        enable => false,
-      }
+    # Ensure that the master-full Puppet daemon is stopped, some distributions
+    # will automatically configure it otherwise, and we don't know what could
+    # happen.
+    service { 'puppet':
+      ensure => stopped,
+      enable => false,
     }
 
   }
