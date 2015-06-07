@@ -35,6 +35,15 @@ just selectively put the override into the most appropiate YAML file for your
 layout.
 
 
+# Requirements
+
+This module requires the following modules, make sure they are also included in
+your Puppetfile or other module dependency handling tool.
+
+* puppetlabs/stdlib (general functions)
+* jethrocarr/initfact (to handle init system detection)
+
+
 # License
 
 Pupistry is licensed under the Apache License, Version 2.0 (the "License").
