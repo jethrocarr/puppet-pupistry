@@ -1,6 +1,6 @@
 {
   "name": "jethrocarr-pupistry",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "jethrocarr",
   "summary": "Companion Puppet module for the Pupistry tool",
   "license": "Apache 2.0",
