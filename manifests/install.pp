@@ -112,7 +112,7 @@ class pupistry::install {
   {
     # Ensure daemon is stopped and idle. Note due to a bug with Puppet +
     # Upstart, we can't do this for Ubuntu systems.
-    if ($::operatingsystem == 'Ubuntu') {
+    if ($::operatingsystem != 'Ubuntu') {
       service { 'pupistry':
         ensure     => stopped,
         enable     => false,
